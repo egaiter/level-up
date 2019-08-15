@@ -1,0 +1,12 @@
+div.pickerList {
+
+}
+
+div.pickerListItem {
+  float: left;
+  margin-right: 10px;
+}
+
+div.clearFloat {
+  clear: both;
+}

@@ -1,0 +1,21 @@
+div.chatContainer {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  position: relative;
+  overflow-y: scroll;
+}
+
+div.chatBox {
+  width: 80%;
+  position: absolute;
+  bottom: 0;
+  margin: 5px;
+}
+
+div.chatBox pre {
+  white-space: pre-wrap;
+  margin: 0;
+}
