@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Chat from './chat/Chat';
 
 class App extends React.Component {
@@ -9,8 +9,8 @@ class App extends React.Component {
     return (
       <div className="container">
         <Chat
-          name = "Bob"
-          serverUrl = "ws://localhost:8080"
+          name = "Grehg"
+          serverUrl = "ws://levelup.madwire.network:8080"
           />
       </div>
     )

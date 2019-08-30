@@ -3,7 +3,4 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 
-let state = {
-    showChat: false
-};
 ReactDOM.render(<App />, document.getElementById('root'));
