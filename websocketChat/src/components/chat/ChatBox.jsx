@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './ChatBox.css';
 
-function ChatBox(props)
-{
+function ChatBox(props) {
   return (
     <div className="chatContainer">
       <div className="chatBox"><pre>{props.chatContents}</pre></div>

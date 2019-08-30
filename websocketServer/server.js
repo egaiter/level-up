@@ -9,7 +9,6 @@ wss.on('connection', function connection(ws) {
   });
   ws.on('close', (close) => {
     chat.removeClientById(ws.clientId);
-    // console.log('Removed Client '+close.target.clientId);
   });
 });
 wss.on('close', function connection(ws) {

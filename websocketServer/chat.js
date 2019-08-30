@@ -8,6 +8,7 @@ class Chat
 
     addClient = (client) => {
         this.clients.push(client);
+        console.log('Added Client '+client.id);
     }
 
     removeClientById = (id) => {
