@@ -18,12 +18,6 @@ class Chat
         console.log('Removed Client '+id);
     }
 
-    removeClientByWS = (ws) => {
-        this.clients = this.clients.filter((item) => {
-            return item.client !== ws;
-        });
-    }
-
     processMessage = (wsClient,message) => {
         message = JSON.parse(message);
         if (message.type === 'connect') {

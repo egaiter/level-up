@@ -11,9 +11,3 @@ wss.on('connection', function connection(ws) {
     chat.removeClientById(ws.clientId);
   });
 });
-wss.on('close', function connection(ws) {
-  ws.on('message', function incoming(message) {
-    chat.processMessage(ws,message);
-    console.log('received: %s', message);
-  });
-});

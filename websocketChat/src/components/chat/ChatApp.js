@@ -37,8 +37,6 @@ class ChatApp {
   getBufferedMessages = () => { return this.bufferedMessages; }
   getChatContents = () => { return this.chatContents; }
   getChatInputText = () => { return this.chatInputText; }
-  getReceiveInputCallback = () => { return this.onReceiveInput; }
-  getChatInputChangeCallable = () => { return this.onReceiveInput; }
   getSendMessageCallable = () => { return this.sendMessage; }
   getConnectCallable = () => { return this.connect; }
   getDisconnectCallable = () => { return this.disconnect; }
@@ -58,14 +56,8 @@ class ChatApp {
     this.setIsConnected(false);
   }
 
-  onReceiveInput = (event) => {
-    console.log(event);
-    this.addToChatContents(event.name, event.message);
-  }
-
   onConnectToServer = (e) => {
     this.setIsConnected(true);
-    console.log(e);
     this.getConnection().send(JSON.stringify({
       type: 'connect',
       id: this.getId()
@@ -74,7 +66,6 @@ class ChatApp {
     if (this.getBufferedMessages().length > 0) {
       this.addToChatContents("System", "Sending buffered messages");
       this.getBufferedMessages().forEach(packet => {
-        console.log(packet);
         this.sendChatToServer(packet.name, packet.message);
       })
       this.setBufferedMessages([]);
@@ -91,7 +82,6 @@ class ChatApp {
   }
 
   receiveChatFromServer = (packet) => {
-    console.log(packet);
     let decodedPacket = JSON.parse(packet.data);
     this.addToChatContents(decodedPacket.name, decodedPacket.message);
   }
@@ -111,7 +101,6 @@ class ChatApp {
 
   sendMessage = event => {
     let message = this.getChatInputText();
-    // console.log(message);
     this.setChatInputText('');
     this.addToChatContents(this.getName(), message);
     this.sendChatToServer(this.getName(), message);

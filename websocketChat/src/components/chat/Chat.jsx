@@ -20,13 +20,11 @@ class Chat extends React.Component {
 
   componentDidMount() {
     this.state.app.connect();
-    window.addEventListener('receiveInput', this.state.app.getReceiveInputCallback());
   }
 
   componentWillUnmount() {
     this.state.app.disconnect();
-    window.removeEventListener('receiveInput', this.state.app.getReceiveInputCallback());
-  }
+ }
 
   refresh = () => {
     this.setState({refresh:this.state.refresh+1})
@@ -44,7 +42,7 @@ class Chat extends React.Component {
         onClick={this.state.app.getDisconnectCallable()}>Disconnect</button>
     ) : (
       <button
-        onClick={this.state.app.getConnectCallable()}>Conntect to Server</button>
+        onClick={this.state.app.getConnectCallable()}>Connect to Server</button>
     );
     return (
       <div>
