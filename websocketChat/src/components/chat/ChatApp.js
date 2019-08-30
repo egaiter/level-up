@@ -60,7 +60,8 @@ class ChatApp {
     this.setIsConnected(true);
     this.getConnection().send(JSON.stringify({
       type: 'connect',
-      id: this.getId()
+      id: this.getId(),
+      name: this.getName()
     }))
     this.addToChatContents("System", "Connected");
     if (this.getBufferedMessages().length > 0) {
