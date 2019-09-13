@@ -45,10 +45,16 @@ class ChatApp {
 
   connect = (serverUrl) => {
     let url = serverUrl !== null ? this.getServerUrl() : serverUrl;
+    let connection = new WebSocket(url);
+    connection.onopen = this.onConnectToServer;
+    connection.onclose = this.onDisconnectFromServer;
+    connection.onmessage = this.receiveChatFromServer;
+    this.setConnection(connection);
     this.setIsConnected(true);
   }
 
   disconnect = () => {
+    this.getConnection().close();
     this.setIsConnected(false);
   }
 
@@ -59,11 +65,24 @@ class ChatApp {
 
   onConnectToServer = (e) => {
     this.setIsConnected(true);
+    this.getConnection().send(JSON.stringify({
+      type: 'connect',
+      id: this.getId(),
+      name: this.getName()
+    }));
     this.addToChatContents("System", "Connected");
+    if(this.getBufferedMessages().length > 0) {
+      this.addToChatContents("System","Sending buffered messages");
+      this.getBufferedMessages().forEach( (packet) => {
+        this.sendChatToServer(packet.name, packet.message);
+      });
+      this.setBufferedMessages([]);
+    }
   }
 
   onDisconnectFromServer = () => {
     this.setIsConnected(false);
+    this.getConnection().close();
     this.addToChatContents("System", "Disconnected, messages will be buffered.");
   }
 
@@ -72,6 +91,8 @@ class ChatApp {
   }
 
   receiveChatFromServer = (packet) => {
+    let decodedJson = JSON.parse(packet.data);
+    this.addToChatContents(decodedJson.name,decodedJson.message);
     console.log(packet);
   }
 
@@ -81,6 +102,11 @@ class ChatApp {
       name: name,
       message: message
     };
+    if(this.getIsConnected()) {
+      this.getConnection().send(JSON.stringify(packet));
+    } else {
+      this.getBufferedMessages().push(packet);
+    }
     console.log(packet);
   }
 
