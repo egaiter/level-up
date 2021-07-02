@@ -24,7 +24,11 @@ class Chat extends React.Component {
 
   componentWillUnmount() {
     this.state.app.disconnect();
+<<<<<<< HEAD
+ }
+=======
   }
+>>>>>>> master
 
   refresh = () => {
     this.setState({refresh:this.state.refresh+1})

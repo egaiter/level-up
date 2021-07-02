@@ -8,6 +8,6 @@ server.on('connection', (conn) => {
     chat.processMessage(conn,message);
   });
   conn.on('close', (close) => {
-    chat.removeClientById(conn.clientId);
+    chat.removeClientById(ws.clientId);
   });
 });

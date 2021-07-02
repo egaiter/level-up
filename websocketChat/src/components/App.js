@@ -9,8 +9,8 @@ class App extends React.Component {
     return (
       <div className="container">
         <Chat
-          name = "Grehg"
-          serverUrl = "ws://levelup.madwire.network:8080"
+          name = "Bob"
+          serverUrl = "ws://chat.domain:8080"
           />
       </div>
     )
