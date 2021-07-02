@@ -10,7 +10,7 @@ class App extends React.Component {
       <div className="container">
         <Chat
           name = "Bob"
-          serverUrl = "ws://levelup.madwire.network:8080"
+          serverUrl = "ws://chat.domain:8080"
           />
       </div>
     )
